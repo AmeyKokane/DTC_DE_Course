@@ -1,0 +1,46 @@
+#3
+
+SELECT COUNT(1) 
+
+FROM yellow_taxi_data 
+
+WHERE date(tpep_pickup_datetime) = '2021-01-15' ;
+
+
+#4
+SELECT date(tpep_pickup_datetime) as dt, max(tip_amount) 
+
+FROM yellow_taxi_data 
+
+WHERE date(tpep_pickup_datetime) between '2021-01-01' and '2021-01-31' 
+group by 1
+order by 2 desc;
+
+#5
+SELECT a."PULocationID",b."Zone", a."DOLocationID",c."Zone", COUNT(1)
+
+FROM yellow_taxi_data as a
+
+LEFT JOIN "Zones" as b
+ON a."PULocationID" = b."LocationID"
+
+LEFT JOIN "Zones" as c
+ON a."DOLocationID" = c."LocationID"
+
+WHERE date(tpep_pickup_datetime) = '2021-01-14'
+and b."Zone" = 'Central Park'
+group by 1,2,3,4
+order by 5 desc;
+
+#6
+SELECT a."PULocationID",b."Zone", a."DOLocationID",c."Zone", avg(total_amount)
+
+FROM yellow_taxi_data as a
+
+LEFT JOIN "Zones" as b
+ON a."PULocationID" = b."LocationID"
+
+LEFT JOIN "Zones" as c
+ON a."DOLocationID" = c."LocationID"
+
+group by 1,2,3,4
