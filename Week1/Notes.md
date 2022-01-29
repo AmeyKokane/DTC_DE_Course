@@ -40,15 +40,22 @@ ENTRYPOINT ["bash"]
 - ENTRYPOINT tells docker to start the specified program(or list of programs) when image starts
 
 
-## Useful Docker Commands
+### Useful Docker Commands
 
 Some useful commands that have helped me resolve some issues:
+
 ```docker ps``` - Lists running containers
+
 ```docker ps -a``` - Lists all containers, including stopped ones
+
 ```docker stop <container id>``` - Stops a running container
+
 ```docker rm <container id>``` - Removes a stopped container
+
 ```docker rm $(docker ps --filter status=exited -q)``` - Removes all stopped containers
+
 ```docker network ls``` - Lists all running networks
+
 ```docker network rm <network id>``` - Removes a network
 
 
