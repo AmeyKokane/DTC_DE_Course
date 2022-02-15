@@ -126,5 +126,15 @@ FROM
 WHERE
  creation_date BETWEEN '2018-01-01' AND '2018-07-01';
   ```
-  
+
+## Internals of Big Query
+    * Big Query stores data into a separate storage called Colossus.
+    * Colossus is a cheap storage option
+    * Colossus stores data in columnar format
+    * Since BQ has separated storage from compute it gives it a significant advantage. This is because most of the cost incurs when performing compute logic on       large datasets. Thus if size of data increases in future cost of storing data wont increase linearly.
+    * Having data on separate storage means when a BQ query is run, it may take a significant time to run if network is slow. But this issue is resolved by having Jupiter Network as a communication link between Colossus (BQ's data storage entity) and Dremel (BQ's compute entity) as Jupiter Network can provide 1 Terabyte/sec data speeds.
+    <BQ Architecture.png>
+        
+ 
+    * 
   
